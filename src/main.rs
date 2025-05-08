@@ -2,8 +2,10 @@ use std::io;
 use rand::Rng;
 use std::cmp::Ordering;
 
-fn main(){
-    println!("Guess the number!");
+
+
+fn guessing_game(){
+    println!("Choose your  the number!");
     
     let secret_number = rand::rng().random_range(1..=100);
     
@@ -34,4 +36,37 @@ fn main(){
             }
         }
     }
+}
+
+
+fn rps(){
+
+    println!("Welcome to a game of Rock, Paper and Scissors!!");
+    
+
+}
+
+
+
+fn main(){
+    println!("Choose your game -");
+
+    println!("Press 1 for a Guessing Game or Press 2 for Rock Paper and Scissors");
+
+    let mut game = String::new();
+    
+    io::stdin()
+        .read_line(&mut game)
+        .expect("Failed to read line!");
+
+    match game.trim().parse::<u32>() {
+            Ok(num) => {
+                match num {
+                    1 => guessing_game(),
+                    2 => rps(),
+                    _ => println!("Not supported yet!"),
+                }
+              }
+            Err(_) => println!("Please enter a valid number."),
+        };
 }
